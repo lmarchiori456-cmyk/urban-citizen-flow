@@ -1,4 +1,4 @@
-import { Building2, Map, FileText, Bell, User } from "lucide-react";
+import { Building2, Map, FileText, Bell, User, Leaf, Calendar, Activity } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import cityHero from "@/assets/city-hero.jpg";
@@ -29,6 +29,27 @@ const Index = () => {
       gradient: "from-primary to-secondary",
     },
     {
+      icon: Leaf,
+      title: "Sustentabilidade",
+      description: "Ações verdes",
+      path: "/sustentabilidade",
+      gradient: "from-secondary to-accent",
+    },
+    {
+      icon: Calendar,
+      title: "Eventos",
+      description: "Cultura e lazer",
+      path: "/eventos",
+      gradient: "from-primary to-accent",
+    },
+    {
+      icon: Activity,
+      title: "Painel",
+      description: "Dados em tempo real",
+      path: "/painel",
+      gradient: "from-primary-glow to-primary",
+    },
+    {
       icon: User,
       title: "Perfil",
       description: "Seus dados",
@@ -56,24 +77,24 @@ const Index = () => {
 
       {/* Shortcuts Grid */}
       <div className="px-6 -mt-8">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {shortcuts.map((shortcut) => {
             const Icon = shortcut.icon;
             return (
               <Card
                 key={shortcut.path}
                 onClick={() => navigate(shortcut.path)}
-                className="p-6 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card border-border"
+                className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card border-border"
               >
                 <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${shortcut.gradient} flex items-center justify-center mb-3`}
+                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${shortcut.gradient} flex items-center justify-center mb-2`}
                 >
-                  <Icon className="w-6 h-6 text-white" />
+                  <Icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="font-semibold text-foreground mb-1">
+                <h3 className="font-semibold text-foreground text-sm mb-0.5">
                   {shortcut.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   {shortcut.description}
                 </p>
               </Card>

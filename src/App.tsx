@@ -8,6 +8,9 @@ import Mapa from "./pages/Mapa";
 import Servicos from "./pages/Servicos";
 import Alertas from "./pages/Alertas";
 import Perfil from "./pages/Perfil";
+import Sustentabilidade from "./pages/Sustentabilidade";
+import Eventos from "./pages/Eventos";
+import Painel from "./pages/Painel";
 import NotFound from "./pages/NotFound";
 import BottomNav from "./components/BottomNav";
 
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/alertas" element={<Alertas />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/sustentabilidade" element={<Sustentabilidade />} />
+          <Route path="/eventos" element={<Eventos />} />
+          <Route path="/painel" element={<Painel />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
