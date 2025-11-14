@@ -29,6 +29,13 @@ const Index = () => {
       gradient: "from-primary to-secondary",
     },
     {
+      icon: User,
+      title: "Perfil",
+      description: "Seus dados",
+      path: "/perfil",
+      gradient: "from-accent to-secondary",
+    },
+    {
       icon: Leaf,
       title: "Sustentabilidade",
       description: "Ações verdes",
@@ -48,13 +55,6 @@ const Index = () => {
       description: "Dados em tempo real",
       path: "/painel",
       gradient: "from-primary-glow to-primary",
-    },
-    {
-      icon: User,
-      title: "Perfil",
-      description: "Seus dados",
-      path: "/perfil",
-      gradient: "from-accent to-secondary",
     },
   ];
 
