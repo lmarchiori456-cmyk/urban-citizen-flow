@@ -80,13 +80,88 @@ const Sustentabilidade = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-secondary to-accent p-6 text-white">
-        <Leaf className="w-12 h-12 mb-2" />
-        <h1 className="text-2xl font-bold mb-2">Sustentabilidade</h1>
-        <p className="text-white/90">Juntos por uma cidade mais verde</p>
+      <div className="bg-gradient-to-r from-secondary to-accent p-6 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+        <div className="relative">
+          <Leaf className="w-12 h-12 mb-2" />
+          <h1 className="text-2xl font-bold mb-2">Sustentabilidade</h1>
+          <p className="text-white/90">Juntos por uma cidade mais verde</p>
+        </div>
       </div>
 
       <div className="p-6 space-y-6">
+        {/* Ranking - DESTAQUE PRINCIPAL */}
+        <div className="relative">
+          <div className="absolute -top-3 -left-3 w-20 h-20 bg-secondary/20 rounded-full blur-2xl"></div>
+          <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-accent/20 rounded-full blur-2xl"></div>
+          
+          <Card className="relative overflow-hidden border-2 border-secondary/30 shadow-lg bg-gradient-to-br from-secondary/5 to-accent/5">
+            <div className="bg-gradient-to-r from-secondary to-accent p-4 text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Award className="w-6 h-6" />
+                  <h2 className="font-bold text-xl">Ranking Eco</h2>
+                </div>
+                <Badge className="bg-white/20 text-white border-none">
+                  Top 5
+                </Badge>
+              </div>
+              <p className="text-white/90 text-sm mt-1">Compete e ajude a cidade a ser mais verde</p>
+            </div>
+            
+            <div className="p-4 space-y-3">
+              {ranking.map((user) => (
+                <div
+                  key={user.position}
+                  className={`flex items-center justify-between p-3 rounded-lg transition-all ${
+                    user.isCurrentUser
+                      ? "bg-secondary/10 border-2 border-secondary shadow-md scale-105"
+                      : "bg-card hover:bg-muted/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className={`text-3xl w-10 text-center ${user.position <= 3 ? 'scale-110' : ''}`}>
+                      {user.badge || `${user.position}º`}
+                    </span>
+                    <div>
+                      <p
+                        className={`font-medium ${
+                          user.isCurrentUser
+                            ? "text-secondary font-bold text-lg"
+                            : "text-foreground"
+                        }`}
+                      >
+                        {user.name}
+                        {user.isCurrentUser && <span className="ml-2 text-xs bg-secondary text-white px-2 py-0.5 rounded-full">Você</span>}
+                      </p>
+                      {user.isCurrentUser && (
+                        <div className="mt-1">
+                          <Progress value={65} className="w-32 h-2 bg-secondary/20" />
+                          <p className="text-xs text-muted-foreground mt-1">65% até 3º lugar</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-xl text-secondary block">
+                      {user.points}
+                    </span>
+                    <span className="text-xs text-muted-foreground">pontos</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="p-4 pt-0">
+              <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20 p-3">
+                <p className="text-sm text-foreground font-medium text-center">
+                  🎯 Ganhe pontos realizando ações sustentáveis!
+                </p>
+              </Card>
+            </div>
+          </Card>
+        </div>
+
         {/* Eco Tips */}
         <div>
           <h2 className="font-semibold text-lg text-foreground mb-3 flex items-center gap-2">
@@ -195,50 +270,6 @@ const Sustentabilidade = () => {
           </div>
         </div>
 
-        {/* Ranking */}
-        <div>
-          <h2 className="font-semibold text-lg text-foreground mb-3 flex items-center gap-2">
-            <Award className="w-5 h-5 text-primary" />
-            Ranking Eco
-          </h2>
-          <Card className="p-4">
-            <div className="space-y-3">
-              {ranking.map((user) => (
-                <div
-                  key={user.position}
-                  className={`flex items-center justify-between py-2 ${
-                    user.isCurrentUser
-                      ? "bg-primary/5 -mx-4 px-4 rounded-lg border-l-4 border-primary"
-                      : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl w-8 text-center">
-                      {user.badge || `${user.position}º`}
-                    </span>
-                    <div>
-                      <p
-                        className={`font-medium ${
-                          user.isCurrentUser
-                            ? "text-primary font-semibold"
-                            : "text-foreground"
-                        }`}
-                      >
-                        {user.name}
-                      </p>
-                      {user.isCurrentUser && (
-                        <Progress value={65} className="w-32 h-1 mt-1" />
-                      )}
-                    </div>
-                  </div>
-                  <span className="font-semibold text-secondary">
-                    {user.points} pts
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </div>
       </div>
     </div>
   );
