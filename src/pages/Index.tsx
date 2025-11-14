@@ -80,23 +80,32 @@ const Index = () => {
         <div className="grid grid-cols-2 gap-3">
           {shortcuts.map((shortcut) => {
             const Icon = shortcut.icon;
+            const isSustainability = shortcut.path === "/sustentabilidade";
+            
             return (
               <Card
                 key={shortcut.path}
                 onClick={() => navigate(shortcut.path)}
-                className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card border-border"
+                className={`p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card border-border ${
+                  isSustainability ? "col-span-2 bg-gradient-to-br from-secondary/10 to-accent/10 border-secondary/30 shadow-md" : ""
+                }`}
               >
-                <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${shortcut.gradient} flex items-center justify-center mb-2`}
-                >
-                  <Icon className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`${isSustainability ? "w-14 h-14" : "w-10 h-10"} rounded-xl bg-gradient-to-br ${shortcut.gradient} flex items-center justify-center ${isSustainability ? "shadow-lg" : ""}`}
+                  >
+                    <Icon className={`${isSustainability ? "w-7 h-7" : "w-5 h-5"} text-white`} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className={`font-semibold text-foreground ${isSustainability ? "text-lg" : "text-sm"} mb-0.5`}>
+                      {shortcut.title}
+                      {isSustainability && <span className="ml-2 text-xs bg-secondary text-white px-2 py-0.5 rounded-full">Destaque</span>}
+                    </h3>
+                    <p className={`${isSustainability ? "text-sm" : "text-xs"} text-muted-foreground`}>
+                      {shortcut.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-foreground text-sm mb-0.5">
-                  {shortcut.title}
-                </h3>
-                <p className="text-xs text-muted-foreground">
-                  {shortcut.description}
-                </p>
               </Card>
             );
           })}
